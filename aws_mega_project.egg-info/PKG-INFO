@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: aws_mega_project
+Version: 0.0.1
+Author: taha_anik
+Author-email: tahaanik729@gmail.com
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: fastapi
+Dynamic: author
+Dynamic: author-email
+Dynamic: requires-dist

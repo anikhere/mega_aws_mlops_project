@@ -1,0 +1,7 @@
+setup.py
+aws_mega_project.egg-info/PKG-INFO
+aws_mega_project.egg-info/SOURCES.txt
+aws_mega_project.egg-info/dependency_links.txt
+aws_mega_project.egg-info/requires.txt
+aws_mega_project.egg-info/top_level.txt
+src/__init__.py
