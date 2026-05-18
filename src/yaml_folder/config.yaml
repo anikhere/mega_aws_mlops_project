@@ -1,0 +1,5 @@
+data_validation:
+  root_dir: artifacts/data_validation
+  valid_train_path: artifacts/data_validation/valid_train.csv
+  valid_test_path: artifacts/data_validation/valid_test.csv
+  validation_report: artifacts/data_validation/report.json
