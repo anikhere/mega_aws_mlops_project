@@ -33,6 +33,3 @@ class Data_ingestion:
           )
         except Exception as e:
            raise CustomException(e, sys)
-obj = Data_ingestion()
-obj.start_ingestion()    
-        

@@ -9,6 +9,7 @@ from sklearn.pipeline import Pipeline
 from src.exceptions import CustomException
 from src.components.data_ingestion import Data_ingestion,Di_Config
 from src.logger import logger
+from utils import Save_obj
 import os
 @dataclass
 class Transformation_Config:
@@ -25,8 +26,7 @@ class DataTranformation:
             'Sleep_Hours',
             'Previous_Scores',
             'Tutoring_Sessions',
-            'Physical_Activity',
-            'Exam_Score'
+            'Physical_Activity'
         ]
         cat_cols = [
             'Parental_Involvement',
@@ -53,7 +53,7 @@ class DataTranformation:
             steps=[
                 ('imputer', SimpleImputer(strategy='most_frequent')),
                 ('one_hot', OneHotEncoder()),
-                ('scaler', StandardScaler())
+                ('scaler', StandardScaler(with_mean=False))
             ]
         )
         column_transform = ColumnTransformer(
@@ -79,4 +79,15 @@ class DataTranformation:
         X_train_transformed = preprocessor.fit_transform(X_train)
         X_test_transformed = preprocessor.transform(X_test)
 
-        return X_train_transformed, X_test_transformed, y_train, y_test, preprocessor
+        train_arr = np.c_[
+            X_train_transformed,y_train
+        ]
+        test_arr = np.c_[
+            X_test_transformed,y_test
+        ]
+        Save_obj(obj=preprocessor,model_path=self.transform_config.preprocessor_obj_file)
+        return (
+            train_arr,
+            test_arr,
+            self.transform_config.preprocessor_obj_file
+        )
