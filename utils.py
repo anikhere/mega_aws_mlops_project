@@ -3,6 +3,7 @@ import yaml
 import pandas as pd
 import dill
 from sklearn.metrics import r2_score
+from sklearn.model_selection import GridSearchCV
 def yaml_open(path:str)-> dict:
     with open(path,'r') as file:
         content = yaml.safe_load(file)
@@ -15,12 +16,23 @@ def Save_obj(obj,model_path):
     os.makedirs(dirname,exist_ok=True)
     with open(model_path,'wb') as file:
         dill.dump(obj,file)
-def evaluate_model(models,x_train,y_train,x_test,y_test):
+def evaluate_model(models,x_train,y_train,x_test,y_test,params):
     report = {}
     for i in range(len(list(models))):
+        para = params[list(models.keys())[i]]
+        
         model = list(models.values())[i]
-        model.fit(x_train,y_train)
-        pred = model.predict(x_test)
+        gs = GridSearchCV(
+            estimator=model,
+            param_grid=para,
+            cv=3,
+            n_jobs=-1,
+            verbose=True,
+            refit=True
+        )
+        gs.fit(x_train, y_train)
+        best_model = gs.best_estimator_
+        pred = best_model.predict(x_test)
         score = r2_score(y_test,pred)
         report[list(models.keys())[i]] = score
         
