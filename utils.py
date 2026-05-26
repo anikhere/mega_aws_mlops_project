@@ -32,10 +32,17 @@ def evaluate_model(models,x_train,y_train,x_test,y_test,params):
         )
         gs.fit(x_train, y_train)
         best_model = gs.best_estimator_
+        print("i am the best:", best_model)
+
+        models[list(models.keys())[i]] = best_model
         pred = best_model.predict(x_test)
         score = r2_score(y_test,pred)
         report[list(models.keys())[i]] = score
         
     
     return report
+def load_object(path:str):
+    with open(path,'rb') as file:
+        model = dill.load(file)
+        return model
 

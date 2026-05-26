@@ -98,12 +98,15 @@ class Model_trainer:
         best_model_name = list(model_report.keys())[list(model_report.values()).index(best_score)]
         best_model = models[best_model_name]
         
+        
 
         if best_score < 0.6:
             raise CustomException(f'no best model found')
+        print("Best model name:", best_model_name)
+        print("Best score:", best_score)
+        print("Best model object:", best_model)
+        Save_obj(model_path=self.config.model_path, obj=best_model)
         
-        Save_obj(model_path=self.config.model_path,
-                 obj=best_model
         
-        )
+
         return best_model

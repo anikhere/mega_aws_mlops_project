@@ -1,3 +1,3 @@
-#.\aws\Scripts\activate
-#python -m venv aws
-#mlops ssh key
+import pickle
+model = pickle.load(open('artifacts/model.pkl', 'rb'))
+print(model)
