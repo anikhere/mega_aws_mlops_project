@@ -1,5 +1,11 @@
-pandas 
+pandas
 numpy
 fastapi
-Flask
+mangum
+uvicorn
+scikit-learn
+xgboost
+pydantic
+jinja2
+python-multipart
 -e .

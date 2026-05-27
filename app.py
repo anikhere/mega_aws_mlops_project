@@ -56,3 +56,5 @@ async def predictor(request:Request,data:CustomData):
             'prediction' : result[0]
         }
     )
+from mangum import Mangum
+application = Mangum(app)
