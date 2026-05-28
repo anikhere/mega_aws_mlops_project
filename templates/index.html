@@ -10,97 +10,114 @@
     <h1>Student Exam Prediction Form</h1>
 
         <!-- Numerical Inputs -->
-
         <input type="number" name="Hours_Studied" placeholder="Hours Studied"><br><br>
-
         <input type="number" name="Attendance" placeholder="Attendance"><br><br>
-
         <input type="number" name="Sleep_Hours" placeholder="Sleep Hours"><br><br>
-
         <input type="number" name="Previous_Scores" placeholder="Previous Scores"><br><br>
-
         <input type="number" name="Tutoring_Sessions" placeholder="Tutoring Sessions"><br><br>
-
         <input type="number" name="Physical_Activity" placeholder="Physical Activity"><br><br>
 
-
         <!-- Categorical Inputs -->
+        <select name="Parental_Involvement">
+            <option value="High">High</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+        </select><br><br>
 
-        <input type="text" name="Parental_Involvement" placeholder="Parental Involvement"><br><br>
+        <select name="Access_to_Resources">
+            <option value="High">High</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+        </select><br><br>
 
-        <input type="text" name="Access_to_Resources" placeholder="Access to Resources"><br><br>
+        <select name="Extracurricular_Activities">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select><br><br>
 
-        <input type="text" name="Extracurricular_Activities" placeholder="Extracurricular Activities"><br><br>
+        <select name="Motivation_Level">
+            <option value="High">High</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+        </select><br><br>
 
-        <input type="text" name="Motivation_Level" placeholder="Motivation Level"><br><br>
+        <select name="Internet_Access">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select><br><br>
 
-        <input type="text" name="Internet_Access" placeholder="Internet Access"><br><br>
+        <select name="Family_Income">
+            <option value="High">High</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+        </select><br><br>
 
-        <input type="text" name="Family_Income" placeholder="Family Income"><br><br>
+        <select name="Teacher_Quality">
+            <option value="High">High</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+        </select><br><br>
 
-        <input type="text" name="Teacher_Quality" placeholder="Teacher Quality"><br><br>
+        <select name="School_Type">
+            <option value="Private">Private</option>
+            <option value="Public">Public</option>
+        </select><br><br>
 
-        <input type="text" name="School_Type" placeholder="School Type"><br><br>
+        <select name="Peer_Influence">
+            <option value="Negative">Negative</option>
+            <option value="Neutral">Neutral</option>
+            <option value="Positive">Positive</option>
+        </select><br><br>
 
-        <input type="text" name="Peer_Influence" placeholder="Peer Influence"><br><br>
+        <select name="Learning_Disabilities">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select><br><br>
 
-        <input type="text" name="Learning_Disabilities" placeholder="Learning Disabilities"><br><br>
+        <select name="Parental_Education_Level">
+            <option value="College">College</option>
+            <option value="High School">High School</option>
+            <option value="Postgraduate">Postgraduate</option>
+        </select><br><br>
 
-        <input type="text" name="Parental_Education_Level" placeholder="Parental Education Level"><br><br>
+        <select name="Distance_from_Home">
+            <option value="Far">Far</option>
+            <option value="Moderate">Moderate</option>
+            <option value="Near">Near</option>
+        </select><br><br>
 
-        <input type="text" name="Distance_from_Home" placeholder="Distance from Home"><br><br>
-
-        <input type="text" name="Gender" placeholder="Gender"><br><br>
-
+        <select name="Gender">
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+        </select><br><br>
 
         <button id="submitBtn">Predict</button>
 
+    <div id="result"></div>
 
-
-    </form>
     <script>
     document.getElementById('submitBtn').addEventListener('click', async () => {
        const data = {
-
-    Hours_Studied: parseInt(document.getElementsByName('Hours_Studied')[0].value),
-
-    Attendance: parseInt(document.getElementsByName('Attendance')[0].value),
-
-    Sleep_Hours: parseInt(document.getElementsByName('Sleep_Hours')[0].value),
-
-    Previous_Scores: parseInt(document.getElementsByName('Previous_Scores')[0].value),
-
-    Tutoring_Sessions: parseInt(document.getElementsByName('Tutoring_Sessions')[0].value),
-
-    Physical_Activity: parseInt(document.getElementsByName('Physical_Activity')[0].value),
-
-
-    Parental_Involvement: document.getElementsByName('Parental_Involvement')[0].value,
-
-    Access_to_Resources: document.getElementsByName('Access_to_Resources')[0].value,
-
-    Extracurricular_Activities: document.getElementsByName('Extracurricular_Activities')[0].value,
-
-    Motivation_Level: document.getElementsByName('Motivation_Level')[0].value,
-
-    Internet_Access: document.getElementsByName('Internet_Access')[0].value,
-
-    Family_Income: document.getElementsByName('Family_Income')[0].value,
-
-    Teacher_Quality: document.getElementsByName('Teacher_Quality')[0].value,
-
-    School_Type: document.getElementsByName('School_Type')[0].value,
-
-    Peer_Influence: document.getElementsByName('Peer_Influence')[0].value,
-
-    Learning_Disabilities: document.getElementsByName('Learning_Disabilities')[0].value,
-
-    Parental_Education_Level: document.getElementsByName('Parental_Education_Level')[0].value,
-
-    Distance_from_Home: document.getElementsByName('Distance_from_Home')[0].value,
-
-    Gender: document.getElementsByName('Gender')[0].value
-}
+        Hours_Studied: parseInt(document.getElementsByName('Hours_Studied')[0].value),
+        Attendance: parseInt(document.getElementsByName('Attendance')[0].value),
+        Sleep_Hours: parseInt(document.getElementsByName('Sleep_Hours')[0].value),
+        Previous_Scores: parseInt(document.getElementsByName('Previous_Scores')[0].value),
+        Tutoring_Sessions: parseInt(document.getElementsByName('Tutoring_Sessions')[0].value),
+        Physical_Activity: parseInt(document.getElementsByName('Physical_Activity')[0].value),
+        Parental_Involvement: document.getElementsByName('Parental_Involvement')[0].value,
+        Access_to_Resources: document.getElementsByName('Access_to_Resources')[0].value,
+        Extracurricular_Activities: document.getElementsByName('Extracurricular_Activities')[0].value,
+        Motivation_Level: document.getElementsByName('Motivation_Level')[0].value,
+        Internet_Access: document.getElementsByName('Internet_Access')[0].value,
+        Family_Income: document.getElementsByName('Family_Income')[0].value,
+        Teacher_Quality: document.getElementsByName('Teacher_Quality')[0].value,
+        School_Type: document.getElementsByName('School_Type')[0].value,
+        Peer_Influence: document.getElementsByName('Peer_Influence')[0].value,
+        Learning_Disabilities: document.getElementsByName('Learning_Disabilities')[0].value,
+        Parental_Education_Level: document.getElementsByName('Parental_Education_Level')[0].value,
+        Distance_from_Home: document.getElementsByName('Distance_from_Home')[0].value,
+        Gender: document.getElementsByName('Gender')[0].value
+        }
         
         const response = await fetch('/predict', {
             method: 'POST',
@@ -109,9 +126,10 @@
         })
         
         const result = await response.json()
+        document.getElementById('result').innerHTML = '<h2>Predicted Score: ' + result.prediction + '</h2>'
         console.log(result)
     })
-</script>
+    </script>
 </body>
 
 </html>
