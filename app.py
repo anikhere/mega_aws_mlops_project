@@ -44,17 +44,10 @@ class CustomData(BaseModel):
     Gender: str
 
 @app.post('/predict')
-async def predictor(request:Request,data:CustomData):
+async def predictor(request:Request, data:CustomData):
     data_dict = {key:[value] for key,value in data.model_dump().items()}
     df = pd.DataFrame(data=data_dict)
     result = pred.predict(df)
-    return templates.TemplateResponse(
-        request=request,
-        name='predict.html',
-        context={
-            'data':data_dict,
-            'prediction' : result[0]
-        }
-    )
+    return {"prediction": float(result[0])}
 from mangum import Mangum
 application = Mangum(app)
