@@ -2,7 +2,7 @@ name: CI Pipeline
 on:
   push:
     branches:
-       - main
+       - Main
 jobs:
    write-hello:
      runs-on: ubuntu-latest
