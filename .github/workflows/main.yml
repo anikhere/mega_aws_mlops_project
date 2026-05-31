@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/Checkout@v4
+        uses: actions/checkout@v4
       
       - name: Configure AWS CREDENTIALS
         uses: aws-actions/configure-aws-credentials@v2
@@ -24,11 +24,11 @@ jobs:
       
       - name: building docker image
         run: | 
-          docker build -t ${{ secrets.ECR_REPOSITORY_URI }}:latest .
+          docker build -t ${{ steps.login-ecr.outputs.registry }}/student-performance-app:latest .
       
       - name: pushing the ecr image
         run: |
-          docker push ${{ secrets.ECR_REPOSITORY_URI }}:latest 
+          docker push ${{ steps.login-ecr.outputs.registry }}/student-performance-app:latest .
   
   deploy-to-ec2:
     runs-on: ubuntu-latest
