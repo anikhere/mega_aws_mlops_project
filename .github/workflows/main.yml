@@ -42,11 +42,9 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
             aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.ECR_REPOSITORY_URI }}
             docker pull ${{ secrets.ECR_REPOSITORY_URI }}:latest
             docker stop student-app || true
             docker rm student-app || true
             docker run -d --name student-app -p 8000:8000 ${{ secrets.ECR_REPOSITORY_URI }}:latest
-
-
-
